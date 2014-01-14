@@ -22,7 +22,7 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration
     end
 
     add_index :taggings, :tag_id
-    add_index :taggings, :order
+    add_index :taggings, :tagging_order
     add_index :taggings, [:taggable_id, :taggable_type, :context]
   end
 
