@@ -8,11 +8,14 @@ module ActsAsTaggableOn
                     :taggable_id,
                     :tagger,
                     :tagger_type,
-                    :tagger_id if defined?(ActiveModel::MassAssignmentSecurity)
+                    :tagger_id if defined?(ActiveModel::MassAssignmentSecurity),
+                    :tagging_order
 
     belongs_to :tag, :class_name => 'ActsAsTaggableOn::Tag'
     belongs_to :taggable, :polymorphic => true
     belongs_to :tagger,   :polymorphic => true
+
+    default_scope :order => '`tagging_order` ASC'
 
     validates_presence_of :context
     validates_presence_of :tag_id
