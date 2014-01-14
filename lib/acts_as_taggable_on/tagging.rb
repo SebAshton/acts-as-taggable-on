@@ -3,19 +3,19 @@ module ActsAsTaggableOn
     attr_accessible :tag,
                     :tag_id,
                     :context,
+                    :order,
                     :taggable,
                     :taggable_type,
                     :taggable_id,
                     :tagger,
                     :tagger_type,
-                    :tagger_id if defined?(ActiveModel::MassAssignmentSecurity),
-                    :tagging_order
+                    :tagger_id if defined?(ActiveModel::MassAssignmentSecurity)
 
     belongs_to :tag, :class_name => 'ActsAsTaggableOn::Tag'
     belongs_to :taggable, :polymorphic => true
     belongs_to :tagger,   :polymorphic => true
 
-    default_scope :order => '`tagging_order` ASC'
+    default_scope :order => '`order` ASC'
 
     validates_presence_of :context
     validates_presence_of :tag_id

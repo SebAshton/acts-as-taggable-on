@@ -16,13 +16,13 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration
       # length for MyISAM table type: http://bit.ly/vgW2Ql
       t.string :context, :limit => 128
 
-      t.integer :tagging_order, :default => 9999
+      t.integer :order, :default => 9999
 
       t.datetime :created_at
     end
 
     add_index :taggings, :tag_id
-    add_index :taggings, :tagging_order
+    add_index :taggings, :order
     add_index :taggings, [:taggable_id, :taggable_type, :context]
   end
 
